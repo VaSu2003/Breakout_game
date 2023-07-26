@@ -1,5 +1,6 @@
 const grid = document.querySelector('.grid')
 const scoreDisplay = document.querySelector('#score')
+let score = 0;
 
 const blockWidth = 100
 const blockHeight = 20
@@ -10,7 +11,7 @@ let currentPosition = userStart;
 const ballStart = [270,30]
 let ballCurrentPos = ballStart;
 
-let xDirection = 2
+let xDirection = -2
 let yDirection = 2
 
 
@@ -139,7 +140,9 @@ function checkForCollisions(){
             // console.log(allBlocks)
             allBlocks[i].classList.remove('block')
             blocks.splice(i,1)
-            changeDirection();
+            changeDirection()
+            score++
+            scoreDisplay.innerHTML = score
         }
     }
 
@@ -153,6 +156,12 @@ function checkForCollisions(){
     if(ballCurrentPos[0] <= 0){
         changeDirection();
     }
+
+    //check for user collisions
+    if((ballCurrentPos[0] > currentPosition[0] && ballCurrentPos[0] < currentPosition[0] + 100) && (ballCurrentPos[1] > currentPosition[1] && ballCurrentPos[1] <  currentPosition[1] + 20)){
+        changeDirection();
+    }
+
     
 
     // check for game over
