@@ -6,6 +6,9 @@ const blockHeight = 20
 const userStart = [230,10]
 let currentPosition = userStart;
 
+const ballStart = [270,30]
+let ballCurrentPos = ballStart;
+
 
 //create block 
 class Block{
@@ -93,3 +96,17 @@ function moveUser(e){
 }
 
 document.addEventListener('keydown',moveUser)
+
+
+//add a ball
+
+const ball = document.createElement('div')
+ball.classList.add('ball')
+drawBall()
+grid.appendChild(ball)
+
+//Draw the ball
+function drawBall(){
+    ball.style.left = ballCurrentPos[0] + 'px'
+    ball.style.bottom = ballCurrentPos[1] + 'px'
+}
